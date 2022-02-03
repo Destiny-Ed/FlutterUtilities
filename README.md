@@ -14,6 +14,9 @@ and the Flutter guide for
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
+## Get the package from pub.ded
+[Add FlutterUtilities in your project](https://pub.dev/packages/flutter_utilities)
+
 ## Features
 
 TODO: List what your package can do. Maybe include images, gifs, or videos.
