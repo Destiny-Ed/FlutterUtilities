@@ -1,6 +1,7 @@
 library flutter_utilities;
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'dart:ui' as ui;
@@ -73,9 +74,47 @@ class FlutterUtilities {
     bool isEmailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email); //This variable returns true if email is valid
-      //and false if email is not valid
+    //and false if email is not valid
 
     return isEmailValid;
+  }
+
+  /// Get File size in mb
+  Map<String, dynamic> fileSizeInMb(File file, double maxSize) {
+    int bytes = file.readAsBytesSync().lengthInBytes;
+    double kb = bytes / 1024;
+    double mb = kb / 1024;
+    if (mb <= maxSize) {
+      ///Accepted
+      final size = mb.round();
+      final sizeRes = "Accepted size ${mb.round()}mb";
+
+      return {'status': true, 'size': size, 'message': sizeRes};
+    } else {
+      ///NotAccepted
+      final sizeRes = 'File size not accepted ${mb.round()}mb';
+      final size = mb.round();
+      return {'status': false, 'size': size, 'message': sizeRes};
+    }
+  }
+
+  //File size in kb
+  Map<String, dynamic> fileSizeInKb(File file, double maxSize) {
+    int bytes = file.readAsBytesSync().lengthInBytes;
+    double kb = bytes / 1024;
+
+    if (kb <= maxSize) {
+      ///Accepted
+      final size = kb.round();
+      final sizeRes = "Accepted size ${kb.round()}mb";
+
+      return {'status': true, 'size': size, 'message': sizeRes};
+    } else {
+      ///NotAccepted
+      final sizeRes = 'File size not accepted ${kb.round()}mb';
+      final size = kb.round();
+      return {'status': false, 'size': size, 'message': sizeRes};
+    }
   }
 }
 
